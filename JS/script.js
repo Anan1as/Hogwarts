@@ -1,5 +1,13 @@
 let iniciar = document.getElementById("iniciar");
 
+let botonPaso2 = document.createElement("button");
+    botonPaso2.setAttribute("id", "botonPaso2");
+    botonPaso2.innerHTML = "Continuar";
+
+let botonPaso3 = document.createElement("button");
+botonPaso3.setAttribute("id", "botonPaso3");
+botonPaso3.innerHTML = "Continuar";
+
 iniciar.addEventListener("click", function() {
     //Inicio de linaje y casa
     let paso1 = document.getElementById("paso1");
@@ -11,12 +19,16 @@ iniciar.addEventListener("click", function() {
     let seleccion1 = document.createElement("select");
     let opcionPredeterminada = document.createElement("option");
     opcionPredeterminada.setAttribute("value", "opcionPredeterminada");
+    
     let opcionSlytheryn = document.createElement("option");
     opcionSlytheryn.setAttribute("value", "Ambición, determinación y astucia");
+    
     let opcionHufflepuff = document.createElement("option");
     opcionHufflepuff.setAttribute("value", "Justicia, lealtad y paciencia");
+    
     let opcionRaivenclow = document.createElement("option");
     opcionRaivenclow.setAttribute("value", "Creatividad, erudición e inteligencia");
+    
     let opcionGryffindor = document.createElement("option");
     opcionGryffindor.setAttribute("value", "Valor, fuerza y audacia");
 
@@ -37,8 +49,10 @@ iniciar.addEventListener("click", function() {
     let linaje = document.createElement("select");
     let mestizo = document.createElement("option");
     mestizo.setAttribute("value", "Mestizo");
+    
     let sangrePura = document.createElement("option");
     sangrePura.setAttribute("value", "Sangre_Pura");
+    
     let muggle = document.createElement("option");
     muggle.setAttribute("value", "Muggle");
 
@@ -113,12 +127,16 @@ iniciar.addEventListener("click", function() {
 
     let nombre = document.createElement("input");
     nombre.setAttribute("placeholder", "Ingrese su nombre aquí");
+
     let edad = document.createElement("input");
     edad.setAttribute("placeholder", "Ingrese su edad aquí");
     edad.setAttribute("type", "number");
+
     let animalPatronus = document.createElement("input");
     animalPatronus.setAttribute("placeholder", "Ingrese su patronus");
+
     let br = document.createElement("br");
+
     let infoValidar = document.createElement("button");
     infoValidar.innerHTML = "Registrar";
     infoValidar.setAttribute("id", "infoValidar");
@@ -174,5 +192,53 @@ iniciar.addEventListener("click", function() {
         divEstudiante.appendChild(parrafo4);
 
         paso1.appendChild(divEstudiante);
+
+        paso1.appendChild(botonPaso2)
     });
+});
+
+let paso2 = document.getElementById("paso2");
+
+botonPaso2.addEventListener("click", function() {
+    
+    let clases = {
+        Transformaciones: "Profesor Kevin Slughorn",
+        Herbología: "Profesora Maria Umbridge",
+        Pociones: "Profesora Liliana McGonagall",
+        Encantamientos: "Profesora Jackie",
+        Defensa_Contra_Las_Artes_Oscuras: "Profesor Robinson Snape",
+        Animales_Magicos: "Profesor David Filch",
+        Historia_De_Magia: "Profesor Ronald Sprout"
+    }
+
+    let parrafo5 = document.createElement("p");
+    parrafo5.innerHTML = "Tus clases y profesores serán los siguientes: "
+
+    let aviso = document.createElement("h6");
+    aviso.innerHTML = "Personalmente prefiero a Snape en pociones, pero no lo cambio porque después se confunden :p";
+
+    let clasesLista = document.createElement("ul");
+        
+    for (let [key, value] of Object.entries(clases)) {
+        let li = document.createElement("li");
+        li.appendChild(document.createTextNode(`${key}: ${value}`));
+        clasesLista.appendChild(li);
+    };
+
+    paso2.appendChild(parrafo5);
+    paso2.appendChild(aviso);
+    paso2.appendChild(clasesLista);
+
+    paso2.appendChild(botonPaso3)
+});
+
+let paso3 = document.getElementById("paso3");
+
+botonPaso3.addEventListener ("click", function() {
+    let parrafo6 = document.createElement("p");
+    parrafo6.innerHTML = "A la noche siguiente, encuentras que es la hora de la gran cena, en donde además podrás ver cual es tu casa. El sombrero seleccionador es posado en tu cabeza..."
+    
+    let parrafo7 = document.createElement("p");
+
+    paso3.appendChild("parrafo6");
 });
