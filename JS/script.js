@@ -1,6 +1,7 @@
 let iniciar = document.getElementById("iniciar");
 
 iniciar.addEventListener("click", function() {
+    //Inicio de linaje y casa
     let paso1 = document.getElementById("paso1");
 
     let parrafo1 = document.createElement("p");
@@ -19,11 +20,11 @@ iniciar.addEventListener("click", function() {
     let opcionGryffindor = document.createElement("option");
     opcionGryffindor.setAttribute("value", "opcionGryffindor");
 
+    opcionPredeterminada.innerHTML = "Selecciona una de las siguientes opciones"
     opcionSlytheryn.innerHTML = "Ambición, determinación y astucia";
     opcionGryffindor.innerHTML = "Valor, fuerza y audacia";
     opcionHufflepuff.innerHTML = "Justicia, lealtad y paciencia";
     opcionRaivenclow.innerHTML = "Creatividad, erudición e inteligencia";
-    opcionPredeterminada.innerHTML = "Selecciona una de las siguientes opciones"
 
     seleccion1.appendChild(opcionPredeterminada);
     seleccion1.appendChild(opcionGryffindor);
@@ -45,40 +46,76 @@ iniciar.addEventListener("click", function() {
     sangrePura.innerHTML = "Sangre pura";
     muggle.innerHTML = "Muggle";
 
+    
     seleccion1.addEventListener("change", function() {
         let opcionCualidades = seleccion1.value;
 
+        while (linaje.firstChild) {
+            linaje.removeChild(linaje.firstChild);
+        }
+    
+        linaje.appendChild(opcionPredeterminada);
+
         if (opcionCualidades == "opcionSlytheryn") {
-            linaje.appendChild(opcionPredeterminada);
             linaje.appendChild(sangrePura);
 
             paso1.appendChild(linaje);
+
+            linaje.addEventListener("change", function() {
+                datosPersonales.style.display = "block";
+            })
 
         } else if (opcionCualidades == "opcionHufflepuff") {
-            linaje.appendChild(opcionPredeterminada);
             linaje.appendChild(mestizo);
             linaje.appendChild(muggle);
 
             paso1.appendChild(linaje);
+
+            linaje.addEventListener("change", function() {
+                datosPersonales.style.display = "block";
+            })
 
         } else if (opcionCualidades == "opcionRaivenclow") {
-            linaje.appendChild(opcionPredeterminada);
             linaje.appendChild(mestizo);
             linaje.appendChild(sangrePura);
             linaje.appendChild(muggle);
 
             paso1.appendChild(linaje);
+
+            linaje.addEventListener("change", function() {
+                datosPersonales.style.display = "block";
+            })
 
         } else if (opcionCualidades == "opcionGryffindor") {
-            linaje.appendChild(opcionPredeterminada);
             linaje.appendChild(mestizo);
             linaje.appendChild(sangrePura);
             linaje.appendChild(muggle);
 
             paso1.appendChild(linaje);
+
+        linaje.addEventListener("change", function() {
+                datosPersonales.style.display = "block";
+            })
             
         } else {
             console.log("Selecciona tus cualidades, por favor.");
-        }
+        };
+    });
+
+    //Fin de linaje y casa
+
+    //Inicio de información personal de estudiante.
+    let datosPersonales = document.createElement("button");
+    datosPersonales.innerHTML = "Continuar";
+    datosPersonales.setAttribute("id", "datosPersonales");
+    paso1.appendChild(datosPersonales);
+    datosPersonales.style.display = "none";
+
+    datosPersonales.addEventListener("click", function() {
+        let parrafo2 = document.createElement("p");
+
+        parrafo2.innerHTML = "Muy bien, ahora, vamos a llenar el resto de tus datos."
+
+        paso1.appendChild(parrafo2);
     })
 })
