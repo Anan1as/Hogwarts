@@ -1,4 +1,5 @@
 let iniciar = document.getElementById("iniciar");
+
 let opcionCualidades;
 
 let botonPaso2 = document.createElement("button");
@@ -13,7 +14,13 @@ let botonPaso4 = document.createElement("button");
 botonPaso4.setAttribute("id", "botonPaso4");
 botonPaso4.innerHTML = "Continuar";
 
+let botonPaso5 = document.createElement("button");
+botonPaso5.setAttribute("id", "botonPaso5");
+botonPaso5.innerHTML = "Continuar";
+
 let estudiante;
+
+let clases;
 
 iniciar.addEventListener("click", function() {
     //Inicio de linaje y casa
@@ -174,6 +181,7 @@ iniciar.addEventListener("click", function() {
             Nombre: nombre.value,
             Edad: edad.value,
             Patronus_Animal: animalPatronus.value,
+            Sabe_Usarlo: false,
             Cualidades: seleccion1.value,
             Linaje: linaje.value
         };
@@ -205,7 +213,7 @@ iniciar.addEventListener("click", function() {
 
     botonPaso2.addEventListener("click", function() {
     
-        let clases = {
+        clases = {
             Transformaciones: "Profesor Kevin Slughorn",
             Herbología: "Profesora Maria Umbridge",
             Pociones: "Profesora Liliana McGonagall",
@@ -268,18 +276,219 @@ iniciar.addEventListener("click", function() {
         paso3.appendChild(parrafo6);
         paso3.appendChild(parrafo7);
         paso3.appendChild(casa);
+        paso3.appendChild(botonPaso4);
     });
 
     let paso4 = document.getElementById("paso4");
 
+    let claseTransformaciones;
+
+    let boggartExiste = false;
+
+    let boggartTransformacion = document.createElement("input");
+    boggartTransformacion.setAttribute("placeholder", "Ingrese su mayor miedo");
+
+    let boggartHechizado = document.createElement("input");
+    boggartHechizado.setAttribute("placeholder", "Ingresa en lo que va a ser transformado");
+
+    let botonMiedo = document.createElement("button");
+    botonMiedo.setAttribute("id", "botonMiedo");
+    botonMiedo.innerHTML = "Continuar";
+
+    let botonHechizo = document.createElement("button");
+    botonHechizo.setAttribute("id", "botonHechizo");
+    botonHechizo.innerHTML = "Continuar";
+
     botonPaso4.addEventListener("click", function () {
         let parrafo8 = document.createElement("p");
-        parrafo8.innerHTML = "Ahora vas a tu primera clase, la cual es Transformaciones, vas a tener que enfrentarte a un Boggart y para esto, necesitas el hechizo de <Ridikulus>, primero, va a tomar una forma que represente tu mayor miedo."
+        parrafo8.innerHTML = "Ahora vas a tu primera clase.";
 
-        let solicitud = document.createElement("h3");
-        solicitud.innerHTML = "¿Que forma tomará el Boggart?"
+        claseTransformaciones = {
+            Nombre: Object.keys(clases)[0],
+            Profesor: clases.Transformaciones,
+            Hora: "08:00am"
+        }
 
+        let claseTLISTA = document.createElement("ul");
+
+        for (let [key, value] of Object.entries(claseTransformaciones)) {
+            let li = document.createElement("li");
+            li.appendChild(document.createTextNode(`${key}: ${value}`));
+            claseTLISTA.appendChild(li);
+        };
+
+        let parrafo9 = document.createElement("p");
+        parrafo9.innerHTML = "En tu primera clase, vas a tener que enfrentarte a un Boggart y transformarlo, necesitas usar el hechizo de Ridikulus, primero, va a tomar una forma que represente tu mayor miedo."
         
+        let solicitud = document.createElement("h4");
+        solicitud.innerHTML = "¿Que forma tomará el Boggart?";
+
+        let solicitud2 = document.createElement("h4");
+        solicitud2.innerHTML = "¿En que vas a transformarlo?";
+
+        paso4.appendChild(parrafo8);
+        paso4.appendChild(claseTLISTA);
+        paso4.appendChild(parrafo9);
+        paso4.appendChild(solicitud);
+        paso4.appendChild(boggartTransformacion);
+        paso4.appendChild(solicitud2);
+        paso4.appendChild(boggartHechizado);
+        paso4.appendChild(botonMiedo);
+    });
+
+    botonMiedo.addEventListener ("click", function () {
+        boggart = {
+            Miedo: boggartTransformacion.value,
+            Transformacion: boggartHechizado.value
+        }
+
+        boggartExiste = true;
+
+        let parrafo11 = document.createElement("p");
+        parrafo11.innerHTML = "Ahora, veamos si el Boggart aparece.";
+
+        paso4.appendChild(parrafo11);
+        paso4.appendChild(botonHechizo);
+    });
+
+    let ridikulus = document.createElement("button");
+    ridikulus.setAttribute("id", "ridikulus");
+    ridikulus.innerHTML = "¡Ridikulus!";
+
+    botonHechizo.addEventListener("click", function(){
+        if (boggartExiste == true) {
+            let parrafo10 = document.createElement("p");
+            parrafo10.innerHTML = "¡El Boggart ha aparecido!, tienes que usar el hechizo."
+
+            paso4.appendChild(parrafo10);
+            paso4.appendChild(ridikulus);
+        } else {
+            let parrafo10 = document.createElement("p");
+            parrafo10.innerHTML = "El Boggart se ha sentido intimidado, estás a salvo."
+
+            paso4.appendChild(parrafo10);
+        };
+    });
+
+    ridikulus.addEventListener("click", function(){
+        let hechizado = document.createElement("h4");
+        hechizado.innerHTML = "¡Has lanzado el hechizo!, el Boggart se ha convertido en un "+ boggartHechizado.value + ".";
+
+        paso4.appendChild(hechizado);
+        paso4.appendChild(botonPaso5);
     })
 
+    let paso5 = document.getElementById("paso5");
+
+    let botonDefensaOscura = document.createElement("button");
+    botonDefensaOscura.setAttribute("id", "botonDefensaOscura");
+    botonDefensaOscura.innerHTML = "Defensa contra las Artes Oscuras";
+    
+    let botonResultados = document.createElement("button");
+    botonResultados.setAttribute("id", "botonResultados");
+    botonResultados.innerHTML = "Resultados Finales";
+
+    botonPaso5.addEventListener("click", function() {
+        let parrafo12 = document.createElement("p");
+        parrafo12.innerHTML = "Como estudiante de Hogwarts, tienes muchas clases, dejemos a tu disposición cual es el orden por las que iras, sin embargo, ten cuidado, los dementores pasean por lo pasillos y la unica clase que te enseñará como defenderte es defensa contra las artes oscuras.";
+    
+        let aviso2 = document.createElement("h6");
+        aviso2.innerHTML = "El resto de las clases serán hechas después de entregar esto jaja";
+
+        let parrafoNumeroChistoso = document.createElement("p");
+        parrafoNumeroChistoso.innerHTML = "¿A que clase irás ahora?";
+
+        paso5.appendChild(parrafo12);
+        paso5.appendChild(aviso2);
+        paso5.appendChild(parrafoNumeroChistoso);
+        paso5.appendChild(botonDefensaOscura);
+        paso5.appendChild(botonResultados);
+    })
+
+    let defensaOscura;
+    let dementor = false;
+    let dementorRandom = Math.random();
+
+    let botonDefiende = document.createElement("button");
+    botonDefiende.setAttribute("id", "botonDefiende");
+    botonDefiende.innerHTML = "Continuar";
+
+    let botonEnfermeria = document.createElement("button");
+    botonEnfermeria.setAttribute("id", "botonEnfermeria");
+    botonEnfermeria.innerHTML = "Continuar";
+
+    botonDefensaOscura.addEventListener("click", function() {
+        let parrafo14 = document.createElement("p");
+        parrafo14.innerHTML = "Ahora vas a la clase: ";
+
+        defensaOscura = {
+            Nombre: Object.keys(clases)[4],
+            Profesor: clases.Defensa_Contra_Las_Artes_Oscuras
+        }
+
+        let claseDLISTA = document.createElement("ul");
+
+        for (let [key, value] of Object.entries(defensaOscura)) {
+            let li = document.createElement("li");
+            li.appendChild(document.createTextNode(`${key}: ${value}`));
+            claseDLISTA.appendChild(li);
+        };
+
+        paso5.appendChild(parrafo14);
+        paso5.appendChild(claseDLISTA);
+
+        let parrafo15 = document.createElement("p");
+        let defensa = document.createElement("h4");
+
+        if (dementorRandom == 0) {
+            parrafo15.innerHTML = "Has llegado a salvo a la clase."
+
+            paso5.appendChild(parrafo15);
+            paso5.appendChild(botonDefiende);
+
+        } else if (dementorRandom == 1) {
+            dementor = true;
+
+            parrafo15.innerHTML = "¡Oh no!, te has encontrado con un Dementor, ¡rapido, usa tu animal patronus!";
+
+            paso5.appendChild(parrafo15);
+
+            if (estudiante.Sabe_Usarlo == true) {
+                defensa.innerHTML = "Te has defendido del dementor, has llegado a salvo a la clase.";
+                
+                paso5.appendChild(defensa);
+                paso5.appendChild(botonDefiende);
+
+            } else if (estudiante.Sabe_Usarlo == false) {
+                defensa.innerHTML = "El Dementor te ha consumido, has sido llevado a la enfermería.";
+
+                paso5.appendChild(defensa);
+                paso5.appendChild(botonPaso5);
+            };
+        };
+    });
+
+    let animalPatronusR = Math.random();
+
+    botonDefiende.addEventListener("click", function() {
+
+        let parrafo16 = document.createElement("p");
+
+        if (animalPatronusR == 0) {
+            estudiante.Sabe_Usarlo = true;
+
+            parrafo16.innerHTML = "¡Has aprendido a utilizar tu animal patronus!";
+
+            paso5.appendChild(parrafo16);
+            paso5.appendChild(botonPaso5);
+        } else if (animalPatronusR == 1) {
+            parrafo16.innerHTML = "Parece que aún necesitas practica para usar tu animal patronus, pero no te preocupes, seguro lo logras.";
+
+            paso5.appendChild(parrafo16);
+        };
+    });
+
+    botonResultados.addEventListener("click", function () {
+        //Pendiente por hacer.
+    })
 });
