@@ -9,6 +9,10 @@ let botonPaso3 = document.createElement("button");
 botonPaso3.setAttribute("id", "botonPaso3");
 botonPaso3.innerHTML = "Continuar";
 
+let botonPaso4 = document.createElement("button");
+botonPaso4.setAttribute("id", "botonPaso4");
+botonPaso4.innerHTML = "Continuar";
+
 iniciar.addEventListener("click", function() {
     //Inicio de linaje y casa
     let paso1 = document.getElementById("paso1");
@@ -263,4 +267,15 @@ iniciar.addEventListener("click", function() {
         paso3.appendChild(parrafo7);
         paso3.appendChild(casa);
     });
+
+    let paso4 = document.getElementById("paso4");
+
+    botonPaso4.addEventListener("click", function () {
+        let parrafo8 = document.createElement("p");
+        parrafo8.innerHTML = "Ahora vas a tu primera clase, la cual es Transformaciones, vas a tener que enfrentarte a un Boggart y para esto, necesitas el hechizo de <Ridikulus>, primero, va a tomar una forma que represente tu mayor miedo."
+
+        let solicitud = document.createElement("h3");
+        solicitud.innerHTML = "¿Que forma tomará el Boggart?"
+    })
+
 });
