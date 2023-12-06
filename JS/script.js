@@ -1,4 +1,5 @@
 let iniciar = document.getElementById("iniciar");
+let opcionCualidades;
 
 let botonPaso2 = document.createElement("button");
     botonPaso2.setAttribute("id", "botonPaso2");
@@ -62,7 +63,7 @@ iniciar.addEventListener("click", function() {
 
     
     seleccion1.addEventListener("change", function() {
-        let opcionCualidades = seleccion1.value;
+        opcionCualidades = seleccion1.value;
 
         while (linaje.firstChild) {
             linaje.removeChild(linaje.firstChild);
@@ -76,7 +77,7 @@ iniciar.addEventListener("click", function() {
             paso1.appendChild(linaje);
 
             linaje.addEventListener("change", function() {
-                datosPersonales.style.display = "block";
+                paso1.appendChild(datosPersonales);
             })
 
         } else if (opcionCualidades == "Justicia, lealtad y paciencia") {
@@ -86,7 +87,7 @@ iniciar.addEventListener("click", function() {
             paso1.appendChild(linaje);
 
             linaje.addEventListener("change", function() {
-                datosPersonales.style.display = "block";
+                paso1.appendChild(datosPersonales);
             })
 
         } else if (opcionCualidades == "Creatividad, erudición e inteligencia") {
@@ -97,7 +98,7 @@ iniciar.addEventListener("click", function() {
             paso1.appendChild(linaje);
 
             linaje.addEventListener("change", function() {
-                datosPersonales.style.display = "block";
+                paso1.appendChild(datosPersonales);
             })
 
         } else if (opcionCualidades == "Valor, fuerza y audacia") {
@@ -107,8 +108,8 @@ iniciar.addEventListener("click", function() {
 
             paso1.appendChild(linaje);
 
-        linaje.addEventListener("change", function() {
-                datosPersonales.style.display = "block";
+            linaje.addEventListener("change", function() {
+                paso1.appendChild(datosPersonales);
             })
             
         } else {
@@ -122,8 +123,6 @@ iniciar.addEventListener("click", function() {
     let datosPersonales = document.createElement("button");
     datosPersonales.innerHTML = "Continuar";
     datosPersonales.setAttribute("id", "datosPersonales");
-    paso1.appendChild(datosPersonales);
-    datosPersonales.style.display = "none";
 
     let nombre = document.createElement("input");
     nombre.setAttribute("placeholder", "Ingrese su nombre aquí");
@@ -195,50 +194,73 @@ iniciar.addEventListener("click", function() {
 
         paso1.appendChild(botonPaso2)
     });
-});
 
-let paso2 = document.getElementById("paso2");
+    let paso2 = document.getElementById("paso2");
 
-botonPaso2.addEventListener("click", function() {
+    botonPaso2.addEventListener("click", function() {
     
-    let clases = {
-        Transformaciones: "Profesor Kevin Slughorn",
-        Herbología: "Profesora Maria Umbridge",
-        Pociones: "Profesora Liliana McGonagall",
-        Encantamientos: "Profesora Jackie",
-        Defensa_Contra_Las_Artes_Oscuras: "Profesor Robinson Snape",
-        Animales_Magicos: "Profesor David Filch",
-        Historia_De_Magia: "Profesor Ronald Sprout"
-    }
+        let clases = {
+            Transformaciones: "Profesor Kevin Slughorn",
+            Herbología: "Profesora Maria Umbridge",
+            Pociones: "Profesora Liliana McGonagall",
+            Encantamientos: "Profesora Jackie",
+            Defensa_Contra_Las_Artes_Oscuras: "Profesor Robinson Snape",
+            Animales_Magicos: "Profesor David Filch",
+            Historia_De_Magia: "Profesor Ronald Sprout"
+        }
 
-    let parrafo5 = document.createElement("p");
-    parrafo5.innerHTML = "Tus clases y profesores serán los siguientes: "
+        let parrafo5 = document.createElement("p");
+        parrafo5.innerHTML = "Tus clases y profesores serán los siguientes: "
 
-    let aviso = document.createElement("h6");
-    aviso.innerHTML = "Personalmente prefiero a Snape en pociones, pero no lo cambio porque después se confunden :p";
+        let aviso = document.createElement("h6");
+        aviso.innerHTML = "Personalmente prefiero a Snape en pociones, pero no lo cambio porque después se confunden :p";
 
-    let clasesLista = document.createElement("ul");
+        let clasesLista = document.createElement("ul");
+
+        for (let [key, value] of Object.entries(clases)) {
+            let li = document.createElement("li");
+            li.appendChild(document.createTextNode(`${key}: ${value}`));
+            clasesLista.appendChild(li);
+        };
+
+        paso2.appendChild(parrafo5);
+        paso2.appendChild(aviso);
+        paso2.appendChild(clasesLista);
+
+        paso2.appendChild(botonPaso3)
+    });
+
+    let paso3 = document.getElementById("paso3");
+
+    botonPaso3.addEventListener ("click", function() {
+
+        let parrafo6 = document.createElement("p");
+        parrafo6.innerHTML = "A la noche siguiente, encuentras que es la hora de la gran cena, en donde además podrás ver cual es tu casa. El sombrero seleccionador es posado en tu cabeza..."
         
-    for (let [key, value] of Object.entries(clases)) {
-        let li = document.createElement("li");
-        li.appendChild(document.createTextNode(`${key}: ${value}`));
-        clasesLista.appendChild(li);
-    };
+        let parrafo7 = document.createElement("p");
+        parrafo7.innerHTML = "Viendo tus cualidades, y linaje, has sido selecionado para la casa:"
 
-    paso2.appendChild(parrafo5);
-    paso2.appendChild(aviso);
-    paso2.appendChild(clasesLista);
+        let casa = document.createElement("h3");
+        if (opcionCualidades == "Ambición, determinación y astucia") {
+            casa.setAttribute("id", "slytherin");
+            casa.innerHTML="Slytherin";
 
-    paso2.appendChild(botonPaso3)
-});
+        } else if (opcionCualidades == "Justicia, lealtad y paciencia") {
+            casa.setAttribute("id", "hufflepuff");
+            casa.innerHTML="Hufflepuff";
 
-let paso3 = document.getElementById("paso3");
+        } else if (opcionCualidades == "Creatividad, erudición e inteligencia") {
+            casa.setAttribute("id", "ravenclaw");
+            casa.innerHTML="RavenClaw";
 
-botonPaso3.addEventListener ("click", function() {
-    let parrafo6 = document.createElement("p");
-    parrafo6.innerHTML = "A la noche siguiente, encuentras que es la hora de la gran cena, en donde además podrás ver cual es tu casa. El sombrero seleccionador es posado en tu cabeza..."
-    
-    let parrafo7 = document.createElement("p");
+        } else if (opcionCualidades == "Valor, fuerza y audacia") {
+            casa.setAttribute("id", "gryffindor");
+            casa.innerHTML="Gryffindor";
 
-    paso3.appendChild("parrafo6");
+        };
+
+        paso3.appendChild(parrafo6);
+        paso3.appendChild(parrafo7);
+        paso3.appendChild(casa);
+    });
 });
