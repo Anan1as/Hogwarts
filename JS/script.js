@@ -13,6 +13,8 @@ let botonPaso4 = document.createElement("button");
 botonPaso4.setAttribute("id", "botonPaso4");
 botonPaso4.innerHTML = "Continuar";
 
+let estudiante;
+
 iniciar.addEventListener("click", function() {
     //Inicio de linaje y casa
     let paso1 = document.getElementById("paso1");
@@ -168,7 +170,7 @@ iniciar.addEventListener("click", function() {
             divEstudiante.removeChild(divEstudiante.firstChild);
         }
 
-        let estudiante = {
+        estudiante = {
             Nombre: nombre.value,
             Edad: edad.value,
             Patronus_Animal: animalPatronus.value,
@@ -276,6 +278,8 @@ iniciar.addEventListener("click", function() {
 
         let solicitud = document.createElement("h3");
         solicitud.innerHTML = "¿Que forma tomará el Boggart?"
+
+        
     })
 
 });
