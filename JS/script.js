@@ -406,8 +406,6 @@ iniciar.addEventListener("click", function() {
     })
 
     let defensaOscura;
-    let dementor = false;
-    let dementorRandom = Math.random();
 
     let botonDefiende = document.createElement("button");
     botonDefiende.setAttribute("id", "botonDefiende");
@@ -440,39 +438,48 @@ iniciar.addEventListener("click", function() {
         let parrafo15 = document.createElement("p");
         let defensa = document.createElement("h4");
 
-        if (dementorRandom == 0) {
-            parrafo15.innerHTML = "Has llegado a salvo a la clase."
+        let botonContinuacion = document.createElement("button");
+        botonContinuacion.setAttribute("id", "botonContinuacion");
+        botonContinuacion.innerHTML = "Continuar";
 
-            paso5.appendChild(parrafo15);
-            paso5.appendChild(botonDefiende);
+        paso5.appendChild(botonContinuacion);
 
-        } else if (dementorRandom == 1) {
-            dementor = true;
+        botonContinuacion.addEventListener("click", function() {
+            let dementorRandom = Math.floor(Math.random() * 2);
 
-            parrafo15.innerHTML = "¡Oh no!, te has encontrado con un Dementor, ¡rapido, usa tu animal patronus!";
-
-            paso5.appendChild(parrafo15);
-
-            if (estudiante.Sabe_Usarlo == true) {
-                defensa.innerHTML = "Te has defendido del dementor, has llegado a salvo a la clase.";
-                
-                paso5.appendChild(defensa);
+            if (dementorRandom == 0) {
+                parrafo15.innerHTML = "Has llegado a salvo a la clase."
+    
+                paso5.appendChild(parrafo15);
                 paso5.appendChild(botonDefiende);
-
-            } else if (estudiante.Sabe_Usarlo == false) {
-                defensa.innerHTML = "El Dementor te ha consumido, has sido llevado a la enfermería.";
-
-                paso5.appendChild(defensa);
-                paso5.appendChild(botonPaso5);
+    
+            } else if (dementorRandom == 1) {
+    
+                parrafo15.innerHTML = "¡Oh no!, te has encontrado con un Dementor, ¡rapido, usa tu animal patronus!";
+    
+                paso5.appendChild(parrafo15);
+    
+                if (estudiante.Sabe_Usarlo == true) {
+                    defensa.innerHTML = "Te has defendido del dementor, has llegado a salvo a la clase.";
+                    
+                    paso5.appendChild(defensa);
+                    paso5.appendChild(botonDefiende);
+    
+                } else if (estudiante.Sabe_Usarlo == false) {
+                    defensa.innerHTML = "El Dementor te ha consumido, has sido llevado a la enfermería.";
+    
+                    paso5.appendChild(defensa);
+                    paso5.appendChild(botonPaso5);
+                };
             };
-        };
+        });
     });
-
-    let animalPatronusR = Math.random();
 
     botonDefiende.addEventListener("click", function() {
 
         let parrafo16 = document.createElement("p");
+
+        let animalPatronusR = Math.floor(Math.random() * 2);
 
         if (animalPatronusR == 0) {
             estudiante.Sabe_Usarlo = true;
@@ -488,7 +495,17 @@ iniciar.addEventListener("click", function() {
         };
     });
 
+    let resultados = document.getElementById("resultados");
+
     botonResultados.addEventListener("click", function () {
-        //Pendiente por hacer.
+        let ul = document.createElement("ul");
+        
+        for (let [key, value] of Object.entries(estudiante)) {
+            let li = document.createElement("li");
+            li.appendChild(document.createTextNode(`${key}: ${value}`));
+            ul.appendChild(li);
+        };
+
+        resultados.appendChild(ul);
     })
 });
