@@ -5,3 +5,114 @@ input {
 select {
     margin: 5px;
 }
+
+#inicio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+}
+
+#paso1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+}
+
+#paso2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+}
+
+#paso3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+}
+
+#paso4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+}
+
+#paso5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+}
+
+#resultados {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+}
+
+#slytherin {
+    border: solid;
+    border-radius: 3px;
+    border-width: 2px;
+    padding: 10px 50px 10px 50px;
+    background-color: rgb(158, 235, 80);
+}
+
+#hufflepuff {
+    border: solid;
+    border-radius: 3px;
+    border-width: 2px;
+    padding: 10px 50px 10px 50px;
+    background-color: rgb(225, 169, 28);
+}
+
+#ravenclaw {
+    border: solid;
+    border-radius: 3px;
+    border-width: 2px;
+    padding: 10px 50px 10px 50px;
+    background-color: rgb(72, 126, 227);
+}
+
+#gryffindor {
+    border: solid;
+    border-radius: 3px;
+    border-width: 2px;
+    padding: 10px 50px 10px 50px;
+    background-color: rgb(206, 35, 35);
+}
+
+.lista {
+    display: flex;
+    justify-content: left;
+    align-items: start;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+}
+
+/*  display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;*/

@@ -193,6 +193,7 @@ iniciar.addEventListener("click", function() {
         
 
         let ul = document.createElement("ul");
+        ul.setAttribute("class", "lista")
         
         for (let [key, value] of Object.entries(estudiante)) {
             let li = document.createElement("li");
@@ -230,6 +231,7 @@ iniciar.addEventListener("click", function() {
         aviso.innerHTML = "Personalmente prefiero a Snape en pociones, pero no lo cambio porque después se confunden :p";
 
         let clasesLista = document.createElement("ul");
+        clasesLista.setAttribute("class", "lista");
 
         for (let [key, value] of Object.entries(clases)) {
             let li = document.createElement("li");
@@ -310,6 +312,7 @@ iniciar.addEventListener("click", function() {
         }
 
         let claseTLISTA = document.createElement("ul");
+        claseTLISTA.setAttribute("class", "lista")
 
         for (let [key, value] of Object.entries(claseTransformaciones)) {
             let li = document.createElement("li");
@@ -383,6 +386,10 @@ iniciar.addEventListener("click", function() {
     let botonDefensaOscura = document.createElement("button");
     botonDefensaOscura.setAttribute("id", "botonDefensaOscura");
     botonDefensaOscura.innerHTML = "Defensa contra las Artes Oscuras";
+
+    let botonPociones = document.createElement("button");
+    botonPociones.setAttribute("id", "botonPociones");
+    botonPociones.innerHTML = "Pociones";
     
     let botonResultados = document.createElement("button");
     botonResultados.setAttribute("id", "botonResultados");
@@ -402,10 +409,14 @@ iniciar.addEventListener("click", function() {
         paso5.appendChild(aviso2);
         paso5.appendChild(parrafoNumeroChistoso);
         paso5.appendChild(botonDefensaOscura);
+        paso5.appendChild(botonPociones);
         paso5.appendChild(botonResultados);
     })
 
     let defensaOscura;
+    let pociones;
+
+    let clase;
 
     let botonDefiende = document.createElement("button");
     botonDefiende.setAttribute("id", "botonDefiende");
@@ -415,7 +426,72 @@ iniciar.addEventListener("click", function() {
     botonEnfermeria.setAttribute("id", "botonEnfermeria");
     botonEnfermeria.innerHTML = "Continuar";
 
+    botonPociones.addEventListener("click", function() {
+        clase = 2;
+
+        let parrafo14 = document.createElement("p");
+        parrafo14.innerHTML = "Ahora vas a la clase: ";
+
+        pociones = {
+            Nombre: Object.keys(clases)[2],
+            Profesor: clases.Pociones
+        }
+
+        let clasePLISTA = document.createElement("ul");
+        clasePLISTA.setAttribute("class", "lista");
+
+        for (let [key, value] of Object.entries(pociones)) {
+            let li = document.createElement("li");
+            li.appendChild(document.createTextNode(`${key}: ${value}`));
+            clasePLISTA.appendChild(li);
+        };
+
+        paso5.appendChild(parrafo14);
+        paso5.appendChild(clasePLISTA);
+
+        let parrafo15 = document.createElement("p");
+        let defensa = document.createElement("h4");
+
+        let botonContinuacion = document.createElement("button");
+        botonContinuacion.setAttribute("id", "botonContinuacion");
+        botonContinuacion.innerHTML = "Continuar";
+
+        paso5.appendChild(botonContinuacion);
+
+        botonContinuacion.addEventListener("click", function() {
+            let dementorRandom = Math.floor(Math.random() * 2);
+
+            if (dementorRandom == 0) {
+                parrafo15.innerHTML = "Has llegado a salvo a la clase."
+    
+                paso5.appendChild(parrafo15);
+                paso5.appendChild(botonDefiende);
+    
+            } else if (dementorRandom == 1) {
+    
+                parrafo15.innerHTML = "¡Oh no!, te has encontrado con un Dementor, usas tu animal Patronus y...";
+    
+                paso5.appendChild(parrafo15);
+    
+                if (estudiante.Sabe_Usarlo == true) {
+                    defensa.innerHTML = "... Te has defendido del dementor, has llegado a salvo a la clase.";
+                    
+                    paso5.appendChild(defensa);
+                    paso5.appendChild(botonDefiende);
+    
+                } else if (estudiante.Sabe_Usarlo == false) {
+                    defensa.innerHTML = "... El Dementor te ha consumido, has sido llevado a la enfermería.";
+    
+                    paso5.appendChild(defensa);
+                    paso5.appendChild(botonPaso5);
+                };
+            };
+        });
+    });
+
     botonDefensaOscura.addEventListener("click", function() {
+        clase = 4;
+
         let parrafo14 = document.createElement("p");
         parrafo14.innerHTML = "Ahora vas a la clase: ";
 
@@ -425,6 +501,7 @@ iniciar.addEventListener("click", function() {
         }
 
         let claseDLISTA = document.createElement("ul");
+        claseDLISTA.setAttribute("class", "lista");
 
         for (let [key, value] of Object.entries(defensaOscura)) {
             let li = document.createElement("li");
@@ -455,18 +532,18 @@ iniciar.addEventListener("click", function() {
     
             } else if (dementorRandom == 1) {
     
-                parrafo15.innerHTML = "¡Oh no!, te has encontrado con un Dementor, ¡rapido, usa tu animal patronus!";
+                parrafo15.innerHTML = "¡Oh no!, te has encontrado con un Dementor, usas tu animal Patronus y...";
     
                 paso5.appendChild(parrafo15);
     
                 if (estudiante.Sabe_Usarlo == true) {
-                    defensa.innerHTML = "Te has defendido del dementor, has llegado a salvo a la clase.";
+                    defensa.innerHTML = "... Te has defendido del dementor, has llegado a salvo a la clase.";
                     
                     paso5.appendChild(defensa);
                     paso5.appendChild(botonDefiende);
     
                 } else if (estudiante.Sabe_Usarlo == false) {
-                    defensa.innerHTML = "El Dementor te ha consumido, has sido llevado a la enfermería.";
+                    defensa.innerHTML = "... El Dementor te ha consumido, has sido llevado a la enfermería.";
     
                     paso5.appendChild(defensa);
                     paso5.appendChild(botonPaso5);
@@ -476,22 +553,60 @@ iniciar.addEventListener("click", function() {
     });
 
     botonDefiende.addEventListener("click", function() {
+        if (clase == 4) {
+            let parrafo16 = document.createElement("p");
 
-        let parrafo16 = document.createElement("p");
+            let animalPatronusR = Math.floor(Math.random() * 2);
 
-        let animalPatronusR = Math.floor(Math.random() * 2);
+            if (animalPatronusR == 0) {
+                estudiante.Sabe_Usarlo = true;
 
-        if (animalPatronusR == 0) {
-            estudiante.Sabe_Usarlo = true;
+                parrafo16.innerHTML = "¡Has aprendido a utilizar tu animal patronus!";
 
-            parrafo16.innerHTML = "¡Has aprendido a utilizar tu animal patronus!";
+                paso5.appendChild(parrafo16);
+                paso5.appendChild(botonPaso5);
+            } else if (animalPatronusR == 1) {
+                parrafo16.innerHTML = "Parece que aún necesitas practica para usar tu animal patronus, pero no te preocupes, seguro lo logras.";
 
-            paso5.appendChild(parrafo16);
-            paso5.appendChild(botonPaso5);
-        } else if (animalPatronusR == 1) {
-            parrafo16.innerHTML = "Parece que aún necesitas practica para usar tu animal patronus, pero no te preocupes, seguro lo logras.";
+                paso5.appendChild(parrafo16);
+                paso5.appendChild(botonPaso5);
+            };
+        } else if (clase == 2) {
+            let parrafo17 = document.createElement("p");
 
-            paso5.appendChild(parrafo16);
+            let aprenderPocion = Math.floor(Math.random() * 6);
+
+            if (aprenderPocion == 0) {
+                parrafo17.innerHTML = "Has aprendido a hacer la poción Amortentia";
+
+                paso5.appendChild(parrafo17);
+                paso5.appendChild(botonPaso5);
+            } else if (aprenderPocion == 1) {
+                parrafo17.innerHTML = "Has aprendido a hacer la poción Brebaje bocazas";
+
+                paso5.appendChild(parrafo17);
+                paso5.appendChild(botonPaso5);
+            } else if (aprenderPocion == 2) {
+                parrafo17.innerHTML = "Has aprendido a hacer la poción Crece Huesos";
+
+                paso5.appendChild(parrafo17);
+                paso5.appendChild(botonPaso5);
+            } else if (aprenderPocion == 3) {
+                parrafo17.innerHTML = "Has aprendido a hacer la poción Doxycida";
+
+                paso5.appendChild(parrafo17);
+                paso5.appendChild(botonPaso5);
+            } else if (aprenderPocion == 4) {
+                parrafo17.innerHTML = "Has aprendido a hacer la poción Filtro de Paz";
+
+                paso5.appendChild(parrafo17);
+                paso5.appendChild(botonPaso5);
+            } else {
+                parrafo17.innerHTML = "Umm... No has aprendido ninguna poción esta vez. Pero no hay problema, a la proxima lo logras.";
+
+                paso5.appendChild(parrafo17);
+                paso5.appendChild(botonPaso5);
+            };
         };
     });
 
@@ -499,6 +614,7 @@ iniciar.addEventListener("click", function() {
 
     botonResultados.addEventListener("click", function () {
         let ul = document.createElement("ul");
+        ul.setAttribute("class", "lista");
         
         for (let [key, value] of Object.entries(estudiante)) {
             let li = document.createElement("li");
