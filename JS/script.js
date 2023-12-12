@@ -552,6 +552,14 @@ iniciar.addEventListener("click", function() {
         });
     });
 
+    let pocionesAprendidas = {
+        Pocion_Amortentia: false,
+        Pocion_Brebaje_bocazas: false,
+        Pocion_Crece_huesos: false,
+        Pocion_Doxycida: false,
+        Pocion_Filtro_de_paz: false
+    };
+
     botonDefiende.addEventListener("click", function() {
         if (clase == 4) {
             let parrafo16 = document.createElement("p");
@@ -576,37 +584,27 @@ iniciar.addEventListener("click", function() {
 
             let aprenderPocion = Math.floor(Math.random() * 6);
 
-            if (aprenderPocion == 0) {
-                parrafo17.innerHTML = "Has aprendido a hacer la poción Amortentia";
-
-                paso5.appendChild(parrafo17);
-                paso5.appendChild(botonPaso5);
-            } else if (aprenderPocion == 1) {
-                parrafo17.innerHTML = "Has aprendido a hacer la poción Brebaje bocazas";
-
-                paso5.appendChild(parrafo17);
-                paso5.appendChild(botonPaso5);
-            } else if (aprenderPocion == 2) {
-                parrafo17.innerHTML = "Has aprendido a hacer la poción Crece Huesos";
-
-                paso5.appendChild(parrafo17);
-                paso5.appendChild(botonPaso5);
-            } else if (aprenderPocion == 3) {
-                parrafo17.innerHTML = "Has aprendido a hacer la poción Doxycida";
-
-                paso5.appendChild(parrafo17);
-                paso5.appendChild(botonPaso5);
-            } else if (aprenderPocion == 4) {
-                parrafo17.innerHTML = "Has aprendido a hacer la poción Filtro de Paz";
-
-                paso5.appendChild(parrafo17);
-                paso5.appendChild(botonPaso5);
+            if (aprenderPocion < 5) {
+                let nombrePocion = Object.keys(pocionesAprendidas)[aprenderPocion];
+    
+                if (!pocionesAprendidas[nombrePocion]) {
+                    pocionesAprendidas[nombrePocion] = true;
+                    parrafo17.innerHTML = `Has aprendido a hacer la poción ${nombrePocion}`;
+    
+                    paso5.appendChild(parrafo17);
+                    paso5.appendChild(botonPaso5);
+                } else {
+                    parrafo17.innerHTML = `Has reforzado tu conocimiento sobre la poción ${nombrePocion}`;
+    
+                    paso5.appendChild(parrafo17);
+                    paso5.appendChild(botonPaso5);
+                }
             } else {
-                parrafo17.innerHTML = "Umm... No has aprendido ninguna poción esta vez. Pero no hay problema, a la proxima lo logras.";
-
+                parrafo17.innerHTML = "Umm... No has aprendido ninguna poción esta vez. Pero no hay problema, a la próxima lo logras.";
+    
                 paso5.appendChild(parrafo17);
                 paso5.appendChild(botonPaso5);
-            };
+            }
         };
     });
 
@@ -623,5 +621,24 @@ iniciar.addEventListener("click", function() {
         };
 
         resultados.appendChild(ul);
+
+        
+        let parrafo18 = document.createElement("p");
+        parrafo18.innerHTML = "Las pociones que aprendiste están marcadas con true: ";
+
+        resultados.appendChild(parrafo18);
+
+
+        let listaPociones = document.createElement("ul");
+        listaPociones.setAttribute("class", "lista");
+
+        for (let[key, value] of Object.entries(pocionesAprendidas)) {
+            let li = document.createElement("li");
+            li.appendChild(document.createTextNode(`${key}: ${value}`));
+            listaPociones.appendChild(li);
+        };
+
+        resultados.appendChild(listaPociones);
+
     })
 });
