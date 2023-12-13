@@ -22,6 +22,8 @@ let estudiante;
 
 let clases;
 
+
+
 iniciar.addEventListener("click", function() {
     //Inicio de linaje y casa
     let paso1 = document.getElementById("paso1");
@@ -30,6 +32,9 @@ iniciar.addEventListener("click", function() {
     parrafo1.innerHTML = "¡Primero!, veamos como te describes a ti mismo y tu linaje.";
     paso1.appendChild(parrafo1);
 
+
+
+    //Creacion del select y opciones
     let seleccion1 = document.createElement("select");
     let opcionPredeterminada = document.createElement("option");
     opcionPredeterminada.setAttribute("value", "opcionPredeterminada");
@@ -60,6 +65,9 @@ iniciar.addEventListener("click", function() {
 
     paso1.appendChild(seleccion1);
 
+
+
+    //Selección de linaje
     let linaje = document.createElement("select");
     let mestizo = document.createElement("option");
     mestizo.setAttribute("value", "Mestizo");
@@ -74,7 +82,9 @@ iniciar.addEventListener("click", function() {
     sangrePura.innerHTML = "Sangre pura";
     muggle.innerHTML = "Muggle";
 
-    
+
+
+    //Función para la selección
     seleccion1.addEventListener("change", function() {
         opcionCualidades = seleccion1.value;
 
@@ -128,9 +138,11 @@ iniciar.addEventListener("click", function() {
         } else {
             console.log("Selecciona tus cualidades, por favor.");
         };
-    });
+    });//Fin de la selección
 
     //Fin de linaje y casa
+
+
 
     //Inicio de información personal de estudiante.
     let datosPersonales = document.createElement("button");
@@ -169,7 +181,10 @@ iniciar.addEventListener("click", function() {
 
     let divEstudiante = document.createElement("div");
     divEstudiante.setAttribute("id", "divEstudiante");
-    
+
+
+
+    //Boton para generar el objeto de estudiante.
     infoValidar.addEventListener("click", function () {
         
 
@@ -209,9 +224,16 @@ iniciar.addEventListener("click", function() {
 
         paso1.appendChild(botonPaso2)
     });
+    //Fin del boton para generar el objeto de estudiante.
 
+
+
+    //Inicio del paso 2
     let paso2 = document.getElementById("paso2");
 
+
+
+    //Boton para hacer el objeto de clases
     botonPaso2.addEventListener("click", function() {
     
         clases = {
@@ -245,9 +267,17 @@ iniciar.addEventListener("click", function() {
 
         paso2.appendChild(botonPaso3)
     });
+    //Fin del boton para hacer el objeto de clases
 
+    //Fin del paso 2
+
+
+
+    //Inicio del paso 3
     let paso3 = document.getElementById("paso3");
 
+
+    //Funcion para seleccionar la casa
     botonPaso3.addEventListener ("click", function() {
 
         let parrafo6 = document.createElement("p");
@@ -281,8 +311,16 @@ iniciar.addEventListener("click", function() {
         paso3.appendChild(botonPaso4);
     });
 
+    //Fin de la función para seleccionar la casa
+
+    //Fin del paso 3
+
+
+
+    //Inicio del paso 4
     let paso4 = document.getElementById("paso4");
 
+    //Inicio de la actividad del Boggart y clase de transformaciones
     let claseTransformaciones;
 
     let boggartExiste = false;
@@ -301,6 +339,8 @@ iniciar.addEventListener("click", function() {
     botonHechizo.setAttribute("id", "botonHechizo");
     botonHechizo.innerHTML = "Continuar";
 
+
+    //Inicio de la función para la clase de transformación
     botonPaso4.addEventListener("click", function () {
         let parrafo8 = document.createElement("p");
         parrafo8.innerHTML = "Ahora vas a tu primera clase.";
@@ -338,7 +378,11 @@ iniciar.addEventListener("click", function() {
         paso4.appendChild(boggartHechizado);
         paso4.appendChild(botonMiedo);
     });
+    //Fin de la función para la clase de transformación
 
+
+
+    //Inicio de la función para atacar al Boggart
     botonMiedo.addEventListener ("click", function () {
         boggart = {
             Miedo: boggartTransformacion.value,
@@ -380,7 +424,15 @@ iniciar.addEventListener("click", function() {
         paso4.appendChild(hechizado);
         paso4.appendChild(botonPaso5);
     })
+    //Fin de la función para atacar al Boggart
 
+    //Fin de la actividad del Boggart y clase de transformaciones
+
+    //Fin del paso 4
+
+
+
+    //Inicio de el paso 5
     let paso5 = document.getElementById("paso5");
 
     let botonDefensaOscura = document.createElement("button");
@@ -395,6 +447,7 @@ iniciar.addEventListener("click", function() {
     botonResultados.setAttribute("id", "botonResultados");
     botonResultados.innerHTML = "Resultados Finales";
 
+    //Funcion para dar a elegir las clases
     botonPaso5.addEventListener("click", function() {
         let parrafo12 = document.createElement("p");
         parrafo12.innerHTML = "Como estudiante de Hogwarts, tienes muchas clases, dejemos a tu disposición cual es el orden por las que iras, sin embargo, ten cuidado, los dementores pasean por lo pasillos y la unica clase que te enseñará como defenderte es defensa contra las artes oscuras.";
@@ -412,6 +465,7 @@ iniciar.addEventListener("click", function() {
         paso5.appendChild(botonPociones);
         paso5.appendChild(botonResultados);
     })
+    //Fin de la función para dar a elegir las clases
 
     let defensaOscura;
     let pociones;
@@ -426,6 +480,7 @@ iniciar.addEventListener("click", function() {
     botonEnfermeria.setAttribute("id", "botonEnfermeria");
     botonEnfermeria.innerHTML = "Continuar";
 
+    //Inicio de función para clase de pociones
     botonPociones.addEventListener("click", function() {
         clase = 2;
 
@@ -488,7 +543,11 @@ iniciar.addEventListener("click", function() {
             };
         });
     });
+    //Fin del boton de clase de pociones
 
+
+
+    //Inicio del boton de clase de defensas oscuras
     botonDefensaOscura.addEventListener("click", function() {
         clase = 4;
 
@@ -551,6 +610,7 @@ iniciar.addEventListener("click", function() {
             };
         });
     });
+    //Fin del boton de clase de defensas oscuras
 
     let pocionesAprendidas = {
         Pocion_Amortentia: false,
